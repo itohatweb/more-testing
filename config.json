@@ -1,0 +1,10 @@
+{
+    "port": 80,
+    "clientId": "",
+    "clientSecret": "",
+    "scopes": [
+        "identify",
+        "guilds"
+    ],
+    "redirectUri": "https://your.url/authorize/callback"
+}
