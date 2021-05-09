@@ -16,7 +16,7 @@ router.post("/container/:id/:option", async (req, res) => {
     if (!valid) return res.status(401).json({ error: "Invalid token provided" });
 
     // curl --unix-socket /var/run/docker.sock -X POST http://localhost/v1.41/containers/0c79f2c7c52d4efc10877469172c3288b5278850720e97193d8bc9a376774715/stop
-    const child = await execFile(
+    const { stdout } = await execFile(
       "/usr/bin/curl",
       [
         "--unix-socket /var/run/docker.sock",
@@ -32,7 +32,7 @@ router.post("/container/:id/:option", async (req, res) => {
       }
     );
 
-    console.log("the child", child);
+    console.log("the child", stdout);
 
     // async function getContainer(id) {
     //   if (typeof id !== "string") return;
