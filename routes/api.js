@@ -25,7 +25,11 @@ router.post("/container/:id/:option", async (req, res) => {
 
     const child = await execFile(
       "/usr/bin/curl",
-      ["--unix-socket /var/run/docker.sock", "-X GET", "http://localhost/v1.41/containers/json"],
+      [
+        "--unix-socket /var/run/docker.sock",
+        "-X POST",
+        `http://host.docker.internal/v1.41/containers/${req.params.id}/${req.params.option}`,
+      ],
       { shell: "/bin/bash" },
       function (error, stdout, stderr) {
         if (error) {
