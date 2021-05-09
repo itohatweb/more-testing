@@ -8,7 +8,7 @@ const http = require("http");
 const express = require("express");
 const app = express();
 
-router.get("/container/:id/:option", async (req, res) => {
+router.post("/container/:id/:option", async (req, res) => {
   try {
     const authorization = req.headers.authorization;
     const valid = await checkKey(authorization, Permissions.START_CONTAINERS | Permissions.STOP_CONTAINERS);
