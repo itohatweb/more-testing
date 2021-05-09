@@ -17,10 +17,10 @@ router.post("/container/:id/:option", async (req, res) => {
     // curl --unix-socket /var/run/docker.sock -X POST http://localhost/v1.41/containers/0c79f2c7c52d4efc10877469172c3288b5278850720e97193d8bc9a376774715/stop
     const agent = new http.Agent();
     agent.createConnection({ path: "/var/run/docker.sock" });
-    await fetch(`http://localhost/v1.41/containers/${id}/${option}`, { agent, method: "POST" }).then(
-      console.log,
-      console.error
-    );
+    await fetch(`http://localhost/v1.41/containers/${req.params.id}/${req.params.option}`, {
+      agent,
+      method: "POST",
+    }).then(console.log, console.error);
 
     // 2021-05-08T20:07:52.757182957Z
 
