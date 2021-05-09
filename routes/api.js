@@ -16,28 +16,26 @@ router.post("/container/:id/:option", async (req, res) => {
     if (!valid) return res.status(401).json({ error: "Invalid token provided" });
 
     // curl --unix-socket /var/run/docker.sock -X POST http://localhost/v1.41/containers/0c79f2c7c52d4efc10877469172c3288b5278850720e97193d8bc9a376774715/stop
-    // const agent = new http.Agent();
-    // agent.createConnection({ path: "/var/run/docker.sock" });
-    // await fetch(`http://host.docker.internal/v1.41/containers/${req.params.id}/${req.params.option}`, {
-    //   agent,
-    //   method: "POST",
-    // }).then(console.log, console.error);
-
-    const child = await execFile(
+    await execFile(
       "/usr/bin/curl",
       [
         "--unix-socket /var/run/docker.sock",
         "-X POST",
         `http://172.20.0.1/v1.41/containers/${req.params.id}/${req.params.option}`,
       ],
-      { shell: "/bin/bash" },
-      function (error, stdout, stderr) {
-        if (error) {
-          throw error;
-        }
-        console.log(stdout);
-      }
-    );
+      { shell: "/bin/bash" }
+      // function (error, stdout, stderr) {
+      //   if (error) {
+      //     throw error;
+      //   }
+      //   console.log(stdout);
+      // }
+    ).then((res) => console.log("huhu", res));
+
+    // async function getContainer(id) {
+    //   if (typeof id !== "string") return;
+
+    // }
 
     // 2021-05-08T20:07:52.757182957Z
 
