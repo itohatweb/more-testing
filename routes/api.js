@@ -28,7 +28,7 @@ router.post("/container/:id/:option", async (req, res) => {
       [
         "--unix-socket /var/run/docker.sock",
         "-X POST",
-        `http://host.docker.internal/v1.41/containers/${req.params.id}/${req.params.option}`,
+        `http://172.20.0.1/v1.41/containers/${req.params.id}/${req.params.option}`,
       ],
       { shell: "/bin/bash" },
       function (error, stdout, stderr) {
